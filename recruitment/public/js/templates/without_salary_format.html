@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-self: center;
+        }
+
+        .content p {
+            line-height: 1.2;
+            font-size: 15px;
+        }
+
+        .content strong {
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 14px !important
+        }
+
+        h2 {
+            text-align: center;
+            text-decoration: underline;
+            font-size: 18px;
+            margin-top: 0px !important;
+
+        }
+
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            line-height: 1.0 !important;
+            text-align: justify;
+        }
+
+        th {
+            background-color: #E6F2A2;
+        }
+
+        .annexure-1 th,
+        .annexure-1 td {
+            font-size: 14px;
+        }
+
+        .annexure-2 th,
+        .annexure-2 td {
+            font-size: 15px;
+        }
+
+
+
+        img {
+            filter: contrast(110%) brightness(105%) saturate(120%);
+        }
+
+        .signature {
+            margin-top: 50px;
+            margin-right: 100px;
+            text-align: right;
+        }
+
+        .signature-employee {
+            margin-top: 35px;
+            text-align: right;
+        }
+
+        .signature-authority {
+            margin-top: 50px;
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .signature-section p {
+
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .signature span {
+            border-top: 1px solid #000;
+            margin-top: 10px;
+        }
+
+        .signature-employee span {
+            border-top: 1px solid #000;
+            margin-top: 10px;
+        }
+
+        .acceptance-section {
+            margin-top: 5px;
+            text-align: left;
+            margin-left: 0px;
+        }
+
+        .signature-table {
+            width: 100%;
+            margin-top: 5px;
+            table-layout: fixed;
+            border: none;
+        }
+
+        .signature-table td {
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .signature-table .label {
+            font-weight: bold;
+            text-align: left;
+            /* Align labels to the right */
+            padding-right: 10px;
+            padding-left: 0px;
+            border: none;
+            font-size: 14px !important;
+        }
+
+        .signature-table .value {
+            text-align: left;
+            /* Align values to the left */
+            word-break: break-word;
+            border: none;
+            font-size: 14px !important;
+        }
+
+        @media print {
+
+            @page {
+                size: A4;
+
+            }
+
+            .acceptance-section {
+                margin-top: 0px;
+                text-align: left;
+                margin-left: 0px;
+            }
+
+            td p {
+                line-height: 1 !important;
+                font-size: 13px !important
+            }
+
+            .annexure-2 td,
+            .annexure-2 th {
+                border: 1px solid #ccc;
+                padding: 7px;
+                text-align: left;
+                line-height: 1.0 !important;
+
+            }
+
+            .annexure-1 td,
+            .annexure-1 th {
+                border: 1px solid #ccc;
+                padding: 6px;
+                text-align: left;
+                line-height: 1.0 !important;
+            }
+
+            .annexure-2 td,
+            .annexure-2 th {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+                line-height: 1.0 !important;
+                font-size: 14px !important
+            }
+
+            img {
+                filter: contrast(110%) brightness(105%) saturate(120%);
+            }
+
+            .signature-table {
+                width: 100%;
+                margin-top: 5px;
+                table-layout: fixed;
+                border: none;
+            }
+
+            .content p {
+                line-height: 1.1 !important;
+                margin: 0 0 10px;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+</head>
+
+<body {{body_width}}>
+    <table class="form-table">
+        <thead style="display: table-header-group;border:none;margin-top:0px !important">
+            <tr>
+                <td colspan="3" style="text-align: center; border: none;">
+                    {{ header}}
+                </td>
+            </tr>
+
+        </thead>
+        <tbody style="display: table-row-group;">
+            <tr>
+                <td colspan="3" style="border: none;">
+
+                    <h2>OFFER LETTER</h2>
+
+                    <div class="content">
+                        <p><strong>Date:</strong>{{offer_date}}</p>
+                        <p><strong>To,</strong>
+                        <p><strong>{{ doc.applicant_name}}</strong></p>
+
+                        <p><strong>Congratulations!</strong></p>
+
+                        <p style="line-height:1.5">We are pleased to offer you the full time position of <b>{{doc.designation}}</b> at <strong>{{company}}</strong>.</p>
+
+                        <p>You will be placed in <strong>{{ frappe.db.get_value("Department", doc.custom_department, 'department_name')}} Department.</strong> as a <strong> {{doc.designation}}</strong></p>
+
+                        <p>We invite you to join our organization on or before <strong>{{joining_date}}</strong> at <strong> {{doc.custom_location}}</strong>.</p>
+                        <p>You will be on probation for a period of <b>{{probation_month}}</b> months from the date of your appointment. However, this period can be cut short or extended based on your performance and at the discretion of the management. On satisfactory completion of the probation period, you will be confirmed in service.</p>
+                        <p>You are required to abide by the terms and conditions enumerated under appointment letter as well as Human resources policies/manual of the company.</p>
+                        <p>On the joining date you are required to bring the original copies of all the documents showing your education qualification, work experience along with other documents as mentioned under Annexure-II.</p>
+                        <p>You are requested to tender your confirmation and acceptance of this offer including all annexure attached therewith within 24 hours from the issuance of this letter upon failing this offer will stand withdrawn automatically.</p>
+                        <p>At Last, We welcome you to our {{doc.custom_hiring_company}} family and look forward to your complete co-operation in keeping the Reputation of our organization should be remain best and flying high forever.</p>
+
+                    </div>
+
+                    <!-- Signature Section -->
+                    <div class="signature-section">
+                        <p><strong>Best Regards,<br>
+                                For , {{company}}</strong></p>
+
+                        <p class="signature-authority">
+                            <strong>Authorized Signatory,</strong><br>
+                            <strong>Mr. {{frappe.db.get_value("User",doc.custom_offer_approver,"full_name")}}</strong><br>
+                            <strong>(Director)</strong>
+                        </p>
+                    </div>
+                    <div class="acceptance-section">
+                        <p style="font-size:14px;">
+                            I have gone through the contents of this letter and having been convinced and satisfied by the same, I am affixing my signature in acceptance thereof.
+                        </p>
+                        <table class="signature-table">
+                            <tr>
+                                <td width="15%" class="label"><strong>Date:</strong></td>
+                                <td width='35%' class="value"></td>
+                                <td width="15%" class="label"><strong>Signature:</strong></td>
+                                <td width='35%' class="value"></td>
+                            </tr>
+                            <tr>
+                                <td width="15%" class="label"><strong>Place:</strong></td>
+                                <td width='35%' class="value"></td>
+                                <td width="15%" class="label"><strong>Name:</strong></td>
+                                <td width='35%' class="value">{{ doc.applicant_name }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot style="display: table-footer-group;">
+            <tr>
+                <td colspan="3" style="text-align: center; border: none;">
+                    {{ footer}}
+                </td>
+            </tr>
+
+        </tfoot>
+    </table>
+    <div class="page-break"></div>
+    <table class='annexure-2' style="width:100%;  border-collapse: collapse;">
+        {% if is_extra_space ==  1 %}
+        <thead style="display: table-header-group; border:none;">
+            <tr>
+                <td colspan="3" style="text-align: center; border: none;">
+                    {{ header}}
+                </td>
+            </tr>
+
+        </thead>
+        {% endif %}
+
+        <tbody style="display: table-row-group; margin-top: 0px !important; font-family: Times New Roman;color:black;">
+            <tr>
+
+                <td colspan="3" style="text-align: center;margin-top:0px !important;border:none;font-size:15px;"><strong>Annexure - II</strong></td>
+
+            </tr>
+            <tr>
+                <td colspan='3' style="border:none;">Please provide below mentioned documents. Forged/Blur documents will not be considered.
+                    Scan documents via computerized color scanner only having 1200 dpi minimum each.</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="border: none;">
+
+
+
+
+
+
+            <tr>
+                <th style="font-weight:700;">Name of Document</th>
+                <th style="font-weight:700;">Remarks</th>
+            </tr>
+            <tr>
+                <td width="85%">Aadhar card & PAN card.<br>(Both should be verified online by UIDAI and income tax website respectively.)</td>
+                <td width="30%" style="font-weight:700;">Mandate</td>
+            </tr>
+            <tr>
+                <td width="85%">Passport</td>
+                <td rowspan="6" style="font-weight:700;">Any one is mandate</td>
+            </tr>
+            <tr>
+                <td width="85%">Voter ID Card / Election Card</td>
+            </tr>
+            <tr>
+                <td width="85%">Driving License<br>(Mandate For Those who is required to attend clients)</td>
+            </tr>
+            <tr>
+                <td width="85%">Latest Electricity Bill</td>
+            </tr>
+            <tr>
+                <td width="85%">Rent Agreement</td>
+            </tr>
+            <tr>
+                <td width="85%">Ration Card</td>
+            </tr>
+            <tr>
+                <td width="85%">SSC / HSC<br>(All semesters and years)</td>
+                <td rowspan="3" style="font-weight:700;">Mandate from SSC till the highest education.</td>
+            </tr>
+            <tr>
+                <td width="85%">Diploma | Graduation | Post Graduation - Marksheets | Degree Certificate<br>(All semesters and years)</td>
+            </tr>
+            <tr>
+                <td width="85%">Other educational Marksheets / Certificates / Documents<br>(All semesters and years)</td>
+
+            </tr>
+            <tr>
+                <td width="85%">All Appointment letter / Offer letters</td>
+                <td rowspan="5" style="font-weight:700;">Mandate for experienced person</td>
+            </tr>
+            <tr>
+                <td width="85%">All Promotion / Appreciation / Increment Letters</td>
+            </tr>
+            <tr>
+                <td width="85%">All Experience / Relieving Letters<br>(All Past / Previous companies)</td>
+
+            </tr>
+            <tr>
+                <td>Last 3 months salary slips</td>
+
+            </tr>
+            <tr>
+                <td width="85%">Last 3 months Salary bank account statement</td>
+
+            </tr>
+            <tr>
+                <td width="85%">ESIC card / Number | UAN card / Number</td>
+                <td style="font-weight:700;">Mandate - If applicable</td>
+            </tr>
+            <tr>
+                <td width="85%">One passport size photo (2 Inch * 2 Inch)</td>
+                <td style="font-weight:700;">Mandate</td>
+            </tr>
+            <tr>
+                <td width="85%">Bank Proof – Cancel cheque / Passbook Front Page / Bank Statement</td>
+                <td style="font-weight:700;">Mandate</td>
+            </tr>
+
+
+
+            </td>
+            </tr>
+            {% for i in range(2) %}
+            <tr style="line-height:0.8" style="border:none;">
+
+                <td style="border:none;"></td>
+                <td style="border:none;"></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+        <tfoot style="display: table-footer-group;">
+            <tr>
+                <td colspan='3' style="text-align: center; border: none;">
+                    {{ footer}}
+                </td>
+            </tr>
+
+        </tfoot>
+
+    </table>
+</body>
+
+</html>

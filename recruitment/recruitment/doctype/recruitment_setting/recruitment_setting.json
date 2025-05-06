@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-30 12:18:45.983929",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "reminder_interval_days",
+  "last_execution_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "reminder_interval_days",
+   "fieldtype": "Int",
+   "label": "Reminder Interval Days"
+  },
+  {
+   "fieldname": "last_execution_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Last Execution Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-04-14 13:50:07.297585",
+ "modified_by": "Administrator",
+ "module": "Recruitment",
+ "name": "Recruitment Setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

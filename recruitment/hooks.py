@@ -5,47 +5,26 @@ app_description = "Recruitment"
 app_email = "info@mantratec.com"
 app_license = "mit"
 
-# Apps
-# ------------------
-
-# required_apps = []
-
-# Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "recruitment",
-# 		"logo": "/assets/recruitment/logo.png",
-# 		"title": "Recruitment",
-# 		"route": "/recruitment",
-# 		"has_permission": "recruitment.api.permission.has_app_permission"
-# 	}
-# ]
-
-# Includes in <head>
-# ------------------
-
-# include js, css files in header of desk.html
-# app_include_css = "/assets/recruitment/css/recruitment.css"
-# app_include_js = "/assets/recruitment/js/recruitment.js"
-
-# include js, css files in header of web template
-# web_include_css = "/assets/recruitment/css/recruitment.css"
-# web_include_js = "/assets/recruitment/js/recruitment.js"
-
-# include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "recruitment/public/scss/website"
-
-# include js, css files in header of web form
-# webform_include_js = {"doctype": "public/js/doctype.js"}
-# webform_include_css = {"doctype": "public/css/doctype.css"}
-
-# include js in page
-# page_js = {"page" : "public/js/file.js"}
-
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
-# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
+doctype_js = {
+   
+    "Job Offer":"public/js/job_offer.js",
+    "Job Requisition":"public/js/job_requisition.js",
+    "Job Applicant":"public/js/job_applicant.js",
+    "Job Opening":"public/js/job_opening.js",
+    "Interview":"public/js/interview.js",
+}
+
+app_include_js = [
+    "/assets/recruitment/js/attach.js",
+    ]
+
+
+# doctype_js=  {"Sales Invoice" : "public/js/sales_invoice.js"}
+
+# doctype_tree_js = {
+    # "doctype" : "public/js/doctype_tree.js"
+# }
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
 # Svg Icons
@@ -125,58 +104,83 @@ app_license = "mit"
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }
 
-# DocType Class
-# ---------------
-# Override standard doctype classes
+permission_query_conditions = {
+    "Job Opening": "recruitment.permission.permission.permission_query_condition",
+    "Job Applicant": "recruitment.permission.permission.permission_query_condition",
+    "Job Requisition": "recruitment.permission.permission.permission_query_condition",
+    "Job Offer": "recruitment.permission.permission.permission_query_condition",
+    "Interview": "recruitment.permission.permission.permission_query_condition"
+}
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+has_permission = {
+    "Job Opening": "recruitment.permission.permission.has_permission",
+    "Job Applicant": "recruitment.permission.permission.has_permission",
+    "Job Requisition": "recruitment.permission.permission.has_permission",
+    "Job Offer": "recruitment.permission.permission.has_permission",
+    "Interview": "recruitment.permission.permission.has_permission",
+}
+
+
+override_doctype_class = {
+    "Interview": "recruitment.overrides.interview.CustomInterview",
+    "Job Requisition": "recruitment.overrides.job_requisition.CustomJobRequisition"
+}
 
 # Document Events
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    "Job Applicant":{
+        "after_insert":"recruitment.backend_code.job_applicant.job_applicant.send_job_description_to_applicant",
+         "validate":"recruitment.backend_code.job_applicant.job_applicant.validate_duplicates_for_job_applicant"
+    },
+    "Job Opening":{
+        "validate":"recruitment.backend_code.job_applicant.job_applicant.validate_duplicates_for_job_opening",
+    },
+  
+    "Job Offer":{
+        "on_submit":"recruitment.backend_code.job_offer.job_offer.job_applicant_update_status",
+        "on_update_after_submit":"recruitment.backend_code.job_offer.job_offer.job_applicant_update_status_after_approve",
+    },
+    "Interview Feedback":{
+        "on_submit":"recruitment.backend_code.interview.interview.send_interview_feedback_notification",
+    },
+  
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"recruitment.tasks.all"
-# 	],
-# 	"daily": [
-# 		"recruitment.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"recruitment.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"recruitment.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"recruitment.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
 
-# Testing
-# -------
+    "cron": {
+        "07 17 * * *":[
+            "recruitment.backend_code.job_offer.job_offer.send_joining_reminders"
+        ],
+        "*/10 * * * *":[
+            "recruitment.backend_code.job_applicant.job_applicant.send_scheduled_emails"
+        ],
+        "*/59 * * * *":[
+            "recruitment.backend_code.job_offer.job_offer.send_scheduled_emails_for_job_offer"
+        ],
+        "45 9 * * *":[
+            "recruitment.recruitment.doctype.recruitment_setting.recruitment_setting.send_open_status_email"
+        ],
+        "0 22 * * *":[
+            "recruitment.backend_code.job_applicant.job_applicant.send_daily_report",
+            "recruitment.backend_code.job_applicant.job_applicant.check_and_send_monthly_report"
+        ]
 
-# before_tests = "recruitment.install.before_tests"
+        
+    },
+	"daily": [
+        "recruitment.overrides.interview.send_feedback_reminder"
+	],
+}
 
-# Overriding Methods
-# ------------------------------
-#
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "recruitment.event.get_events"
-# }
+
+
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
@@ -241,4 +245,14 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+
+fixtures = [
+    {"dt": "Workflow", "filters": [["name", "in", ["Job Offer","Job Requisition","Job Applicant Workflow"]]]},
+     {"dt": "Workflow State", "filters": [["name", "in", ["Send to Team Leader","Approval Pending By Director","Approval Pending By Team Lead- Talent Acquisition","On Hold","Offer Accepted","Offer Declined","Approval Pending By Manager Talent Acquisition"]]]},
+     {"dt": "Workflow Action Master", "filters": [["name", "in", ["Send to Team Leader","Resubmit","Offer Accept","Offer Decline"]]]},
+      {"dt": "Workspace", "filters": [["name", "in", ["TA User","TA Manager","TL User","Hiring Manager"]]]},
+   
+    {"dt": "Email Template", "filters": [["name", "in", ["Submission of Resignation Email & Acceptance Letter","Document Submission Required for Further Process","Job Description Option for candidate","Interview Feedback Selected","Interview Feedback On Hold","Interview Feedback Rejection","Job Applicant is Rejected","Job Applicant is Rejected","Job Applicant Shortlisted","Job Requisition Approved","Job Requisition Approved"]]]},
+]
+
 

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultant Agreement</title>
+    <style>
+        body {
+            margin-left: 25%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 5px;
+            text-align: justify;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr.extra-space {
+            height: 0px;
+            /* Adjust height as needed */
+        }
+
+        .ql-editor {
+              word-break: break-word;
+            }
+
+
+        @media print {
+            .page-break {
+                page-break-before: always !important;
+                break-before: page;
+            }
+
+
+            tr.extra-space {
+                height: 20px;
+            }
+
+            body {
+                margin-left: 0%;
+            }
+
+            ul,
+            li {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .ql-editor {
+              word-break: break-word;
+            }
+        }
+    </style>
+</head>
+
+<body {{body_width}}>
+
+
+    {% macro render_header(header) %}
+    <thead style="display: table-header-group; border: none; margin-top: 0px !important;">
+        <tr>
+            <td colspan='4' style="text-align: center; border: none;">
+                {{ header | safe }}
+            </td>
+        </tr>
+    </thead>
+    {% endmacro %}
+    {% macro render_footer(footer) %}
+    <tfoot style="display: table-footer-group; position: relative !important; bottom: 0; background: white;">
+        <tr>
+            <td colspan="4" style="text-align: center; border: none; padding: 10px;">
+                {{ footer }}
+            </td>
+        </tr>
+    </tfoot>
+    {% endmacro %}
+
+    <table>
+
+        {{render_header(header)}}
+
+        <tbody>
+            <tr>
+                <td colspan="2" style="text-align: center;"><strong>CONSULTANT AGREEMENT</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">This Consultant Agreement ("Agreement") is made on this {{consultant_date}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;"><strong>BY AND BETWEEN</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>{{doc.custom_hiring_company}},</strong> a company incorporated under the provisions of the Companies Act, 1956, and having its registered office at <strong>{{doc.custom_company_address}} </strong>hereinafter referred to as the "Company" (which expression, unless repugnant to the context and meaning thereof, shall include its successors in business and permitted assigns) as PARTY OF THE FIRST PART.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;"><strong>AND</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>{{doc.custom_salutation}}. {{doc.applicant_name}}</strong>, Son of <strong>{{doc.custom_fathers_name}}</strong>, having Aadhar number <strong>{{doc.custom_aadhar_card_number}}</strong>, residing at <strong>{{doc.custom_consultant_address}}</strong>, hereinafter referred to as the "Consultant" (which term shall mean and include its successors, permitted assigns, executors, legal representatives, successors, and administrators) of the SECOND PART.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The "Company" and the "Consultant" are hereinafter collectively referred to as the "Parties" and individually as "Party".
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>WHEREAS</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <ul>
+                        <li>The Company is in Identity and Security Business.</li>
+                        <li>The Consultant has experience in the field of <strong>{{doc.custom_experience_in_which_field or ''}}</strong>.</li>
+                        <li>The Consultant has offered and agreed to provide the Services (defined under Schedule I) to the Company and based on the representation made by the Consultant, the Company has agreed to appoint the Consultant for providing such Services upon the terms and conditions of this Agreement. The Consultant will have the designation of <strong>{{doc.designation}}</strong>.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>NOW IT IS HEREBY AGREED BY AND BETWEEN THE PARTIES HERETO AS FOLLOWS:</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>1) THE SERVICES</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;text-indent: -10px;">
+                    &#x2022; The Consultant shall provide the Services more particularly specified in Schedule I hereof (the 'Services') to the Company under this Agreement in a diligent and timely manner and on the terms and conditions contained herein.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;text-indent: -10px;">
+                    &#x2022; The Consultant shall Achieve the Achievements specified in Schedule I hereof (the 'Achievements') under this Agreement in a diligent and timely manner and on the terms and conditions contained herein.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;text-indent: -10px;">
+                    &#x2022; The Consultant shall always comply with the instructions, whether orally or in writing, provided by the Company from time to time relating to the performance of the Services, duties, and obligations under this Agreement. The Services rendered by the Consultant shall be subject to regular review by the Company.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;text-indent: -10px;">
+                    &#x2022; The Consultant expressly acknowledges and agrees that the Company has appointed the Consultant on a non-exclusive basis. In this regard, the Parties have entered into this agreement on the basis that the Company may, in its absolute discretion, acquire from third parties, services similar to or identical to the Services being provided by the Consultant under this Agreement.
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2"><strong>2) PAYMENT OF FEES AND EXPENSES</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+                    &#x2022; The Company shall pay to the Consultant such fees and charges as described in Schedule II hereof (the 'Fees').
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+                    &#x2022; Fees of every month shall be paid to the Consultant only on submission of an invoice. Consultant must submit the invoice by the last working day of every month. The invoice will be paid within 7 working days.
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+
+                    &#x2022; The Consultant undertakes not to make any claim whatsoever from the Company regarding any additional costs, expenses, or extensions of the Services beyond what is specifically authorized or approved by the Company in writing.
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>3) OTHER TERMS</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Travelling Expenses:</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Approval in email for travelling needs to be taken beforehand by the Consultant from the Company.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>4) WITHHOLDING TAX</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    In the event that the company is required to withhold certain amounts or a certain portion of the payment due to the consultant, the company may deduct such mandatory amounts to the extent strictly required under such applicable tax law from said payment to the consultant, and pay such amount to the appropriate tax authority.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>5) REPRESENTATIONS AND WARRANTIES OF THE CONSULTANT</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="highlight">The Consultant warrants and represents to the Company that:</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Consultant has full power and authority to enter into this Agreement and perform the Services.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Consultant shall render the Services and perform his obligations and duties under this Agreement accurately and in accordance with instructions, specifications, procedures, standards, guidelines, and timeframe, if any, as are issued from time to time, by the Company for the performance of the Services to the satisfaction of the Company.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Consultant shall be responsible for his taxes, if any, and shall indemnify and hold harmless the Company for any liability in this connection.</td>
+            </tr>
+            <tr>
+                <td colspan="2">Consultant shall perform the Services under this Agreement in such manner as to not adversely affect the reputation and goodwill of the Company or their business associates.</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    During the terms of this Agreement, the consultant shall not take direct or indirect, employment with anyone. Consultant agrees that Company’s Employee Code of Conduct shall be applicable to Consultant.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">The Consultant shall conduct all its dealings in a very ethical manner. Consultant shall not give or accept any favours, any gifts, sponsorship or any entertainment, directly or indirectly, that is outside of normal business dealings. Where any favours, gifts etc. have been given or accepted, a list of all such dealings shall be emailed to {{doc.custom_offer_approver}}. Consultant shall not have any other business or personal arrangements (outside of this contract) with any company employee or Customer or either directly or indirectly through other associated companies or partnerships/ arrangements without company’s knowledge or authorized by the company. Consultant shall not have any other dealings with company or other consultant or Suggested Customer or its employees, where there are possible instances of any conflict of interest that may cloud their judgment or decision. Consultant shall always refrain from giving or attempting to pay illegal gratification/bribes/kickbacks. Any attempts to provide such personal gratification to any employee of company / customer shall be viewed in a very serious manner and may leads to termination of the Agreement.</td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2"><strong>6) EXCLUSIVITY OF SERVICE</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The Consultant agrees to exclusively provide services to the company during the term of this agreement. The Consultant will not engage in any other employment or business activities that may conflict with their duties to the company.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">During the terms of this Agreement, the consultant shall not take direct or indirect employment with anyone. Consultant agrees that the Company's Employee Code of Conduct shall be applicable to Consultant.</td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td colspan="2">
+                    If at any time the company determines that the Consultant has engaged in other employment or business activities that conflict with their duties to the company, the company may take such actions as it deems fit, including but not limited to:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left:50px;text-indent: -10px;">
+                    &#x2022; Stopping payment of any outstanding fees.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left:50px;text-indent: -10px;">
+                    &#x2022; Terminating the contract.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left:50px;text-indent: -10px;">
+                    &#x2022; Pursuing other legal remedies.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>7) TERM</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    This Agreement shall commence on the from <strong>{{consultant_from_date}}</strong> and shall continue until <strong>{{consultant_to_date}}</strong>, subject to earlier termination in terms of Clause 6 below ("Term").
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>8) PRE-EMPLOYMENT UNDERTAKINGS:</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Before commencing Services with the company, the Consultant agrees to provide the following undertakings:
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>1.&nbsp;&nbsp;Anti-Bribery:</strong> The Consultant will comply with all applicable anti-bribery laws and regulations, and policy of the company and will not engage in any form of bribery or corruption.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>2.&nbsp;&nbsp;Exclusivity of Services:</strong> The Consultant will exclusively provide services to the company during the term of the agreement and will not engage in any other employment or business activities that may conflict with their duties to the company.
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    Any breach of these undertakings shall be considered a breach of this agreement. The company may take such actions as it deems fit, including but not limited to:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+                    &#x2022; Terminating the agreement.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+                    &#x2022; Withholding or recovering any outstanding payments.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+                    &#x2022; Pursuing legal remedies.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>9) TERMINATION</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-indent: -10px;">
+
+                    &#x2022; Company shall have the right to terminate this Agreement by providing Ten (10) days of prior written notice to the other party if the company believes that consultant is not performing his duties and responsibilities as per the expectations of the company or as per the <strong class="highlight">Schedule II and Schedule III</strong> of this Agreement.
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-indent: -10px;">
+                    &#x2022; The Consultant may terminate this Agreement, without cause, by giving the Company 120 days' written notice. This notice period may be reduced to a minimum of 90 days at the Company's discretion, depending on the severity of the circumstances surrounding the Consultant's termination.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-indent: -10px;">
+                    &#x2022; Notwithstanding any other provision of this agreement, in case the consultant violates any clause of this agreement or engages in unethical behavior, bribery, or breach of code of conduct of the company as defined under the HR policies of the Company, then this agreement can be terminated immediately.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>Upon termination of this Agreement for any reason:</strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 30px;text-indent: -10px;">
+
+                    &#x2022; Each party shall at its own expense return all confidential information, advertising, and other material provided by the other.
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 30px;text-indent: -10px;">
+
+
+                    &#x2022; The Consultant shall forthwith cease to act or indicate, advertise or otherwise represent itself as a consultant of the company.
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 30px;text-indent: -10px;">
+
+
+                    &#x2022; The Consultant shall not have any claim against the other for compensation for loss of business, goodwill, or any similar claim.
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 30px;text-indent: -10px;">
+
+                    &#x2022; The termination of this Agreement shall not prejudice rights accrued prior to termination.
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 30px;text-indent: -10px;">
+
+                    &#x2022; Any Clauses intended by the Parties of this Agreement to survive the termination of this Agreement shall survive the termination of this Agreement by whatever cause.
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>10) RELATIONSHIP</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong><u>Independent Contractor</u></strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The relationship between the Company and the Consultant is that of a principal and independent contractor. Nothing in this Agreement shall be taken as constituting the Consultant an employee or agent of the Company. The Parties undertake that none of their respective employees and staff shall be construed in any manner, either expressly or by implication, as the employees of the other Party and the other Party shall not in any manner be liable for any claims, demands, and the like made by them.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong><u>Mutual Acknowledgements</u></strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The Consultant and the Company acknowledge that:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 30px;text-indent: -10px;">
+
+                    &#x2022; Neither is the legal representative, agent, joint venture, or partner of the other for any purposes.
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 30px;text-indent: -10px;">
+
+                    &#x2022; Neither of them has any right or authority to assume or create any obligations of any kind or to make any representations or warranties, whether express or implied, on behalf of the other or to bind the other in any respect.
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong class="highlight"><u>The Consultant's further Acknowledgement</u></strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The Consultant acknowledges that neither the consultant nor its employees, agents, or representatives shall be entitled to make representations or give or purport to give warranties either on their own behalf or on behalf of the Company other than as authorized by the Company in writing.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>11) CONFIDENTIALITY</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The terms and conditions of the Non-Confidentiality Agreement enclosed as Annexure A shall apply to this agreement.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>12) INDEMNITY</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The Consultant hereby undertakes and agrees to indemnify, defend, and hold harmless the Company, its officers, directors, employees, agents, and representatives from and against all claims, proceedings, damages, losses, actions, costs, and expenses, including reasonable attorneys' fees, arising out of or resulting from:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 25px;text-indent:-10px">
+                    &#x2022; Any breach of this Agreement by the Consultant or any of its employees, representatives, or subordinates.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 25px;text-indent:-10px">
+                    &#x2022; Any negligence, gross negligence, willful misconduct, or intentional wrongdoing by the Consultant or any of its employees, representatives, or subordinates.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 25px;text-indent:-10px">
+                    &#x2022; Any claim or allegation arising from the Consultant's or its employees', representatives', or subordinates' performance of services under this Agreement.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 25px;text-indent:-10px">
+                    &#x2022; Any fines, penalties, or damages imposed on the Company by third-party customers or vendors due to the Consultant's negligence or breach of this Agreement.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 25px;text-indent:-10px">
+                    &#x2022; Any violation of applicable laws, regulations, or ordinances by the Consultant or any of its employees, representatives, or subordinates.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>13) TRADEMARKS, SERVICE MARKS, AND COPYRIGHT</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    This Agreement does not constitute a trademark or service mark license. The Consultant acknowledges that—
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    All trademarks and trade names derived from it, are used in association with the Company Products (<span class="highlight">"Trademarks"</span>) at the exclusive right of the Company; and the Consultant is not entitled, either by implication or otherwise, to any title in or use of the Trademarks, except in accordance with the agreement or with the permission of the Company, such permission to be given or withheld at the sole discretion of the Company.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Except as otherwise agreed to by the Parties in writing, the Consultant acknowledges that any and all works, reports, and documents developed by the Consultant in the course of the performance of this Agreement have been specifically ordered and commissioned by the Company and shall be the property of the Company. The Consultant understands that such works, reports, and documents shall be deemed to be "works-for-hire" for copyright purposes.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The Consultant irrevocably assigns, transfers, and conveys to the Company, its successors and assigns, the Consultant’s entire legal and beneficial right, title, and interest in the aforesaid works, reports, and documents.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The Consultant agrees to do such further acts and execute and deliver to the Company such instruments and documents as may be required to perfect, register, or enforce the Company’s ownership of the rights so conveyed. If the Consultant fails or refuses to execute any such further instruments and documents, the Consultant appoints the Company as the Consultant’s attorney to act on the Consultant’s behalf solely for the purpose of executing such instruments and documents. This appointment shall be irrevocable and deemed to be a power provided for valuable consideration.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>14) NOTICES</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    All notices referred to in this Agreement shall be in writing and shall be deemed to be properly given and served on the Party to whom such notice is to be given if sent either by courier, electronic mail, or Registered post to the Party at its address mentioned below:
+                </td>
+            </tr>
+            <tr>
+                <td style="border:1px solid black;width: 3%; font-weight: bold; vertical-align: top; text-align: left; white-space: nowrap;padding-left: 20px;"><strong>Company :</strong></td>
+                <td style="border:1px solid black;width: 97%; text-align: justify;padding-left: 25px;">
+                    <strong>Mr.{{frappe.db.get_value("User",doc.custom_offer_approver,'full_name') or ''}}</strong><br>
+                    <strong>{{doc.custom_hiring_company}}</strong><br>
+                    {{doc.custom_company_address}}<br>
+                    <strong>Email :</strong> {{doc.custom_offer_approver}}
+                </td>
+            </tr>
+
+            </tr>
+            <tr>
+                <td style="border:1px solid black;width: 3%; font-weight: bold; vertical-align: top; text-align: left; white-space: nowrap;padding-left: 20px;"><strong>Consultant :</strong></td>
+                <td style="border:1px solid black;width: 97%; text-align: justify;padding-left: 25px;">
+                    Name: {{doc.custom_salutation}}.{{doc.applicant_name}}<br>
+                    Address: {{doc.custom_consultant_address}}<br>
+                    Email: {{doc.applicant_email}}
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    Either Party may from time to time designate by written notice to the other Party a substitute address which it desires to be used for service. Service of any notices may also be made personally.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>15) CONFLICT OF INTEREST AND NON-SOLICITATION OF CUSTOMERS.</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+                    During the Term of this Agreement and the Subsequent Five-Year Prohibition Period ("Prohibition Term") the consultant is expressly prohibited from engaging in the following activities without the prior written consent of the company:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;"><strong>1. Direct or Indirect Business Competition:</strong></td>
+            </tr>
+            <tr>
+                <td colspan='2' style="padding-left: 30px;">
+                    The consultant shall not, directly or indirectly, whether alone or in association with others, participate in any business activity that competes with the company or any of its affiliated entities. This prohibition extends to involvement as a partner, joint venture participant, officer, director, employee, consultant, agent, independent contractor, or stockholder of any competing company, business, or commercial enterprise.
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2' style="padding-left: 20px;"><strong>2. Product and Service Competition:</strong></td>
+            </tr>
+            <tr>
+
+                <td colspan='2' style="padding-left: 30px;">
+                    The consultant shall not compete with the products or services being developed, marketed, distributed, sold, or otherwise provided by the company or any of its affiliated entities during the Prohibition Period.
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2' style="padding-left: 20px;"><strong>3. Customer Solicitation:</strong></td>
+            </tr>
+            <tr>
+
+                <td colspan='2' style="padding-left: 30px;">
+                    The consultant shall not, directly or indirectly, solicit or do business with any customer of the company or its affiliated entities during the Prohibition Period.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 20px;">
+                    This prohibition is intended to safeguard the company’s proprietary information, customer relationships, and competitive advantage. Any violation of this clause may result in legal action.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>16) NON-SOLICITATION OF EMPLOYEES</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    During the Term of this Agreement and the Subsequent Five-Year Prohibition Period ("Prohibition Term"), the consultant is prohibited from the following:
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2' style="padding-left: 20px;"><strong>1. Soliciting, Recruiting, or Hiring Key Employees:</strong></td>
+            </tr>
+            <tr>
+
+                <td colspan='2' style="padding-left: 30px;">
+                    The consultant cannot directly or indirectly try to persuade key employees or contractors of the company or its affiliated entities to leave their jobs and work for a competitor. This includes actions by any business organization controlled by the consultant.
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2' style="padding-left: 20px;"><strong>2. Inducing Key Employees to Leave:</strong></td>
+            </tr>
+            <tr>
+
+                <td colspan='2' style="padding-left: 30px;">
+                    The consultant cannot take any actions that might encourage key employees or contractors to violate their employment agreements with the company or its affiliated entities.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+
+                    The term "key employee or contractor" includes Any employee or contractor who has signed a non-compete or non-solicitation agreement with the company or its affiliated entities,Any professional employee, including computer professionals and contractors.
+
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    Any senior administrator, key employee, or contractor who has a written employment agreement with the company or its affiliated entities.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>17) AUDIT RIGHTS</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Consultant agrees that the company has the right to audit the transactions related to the consultant’s execution of its obligations under this Agreement.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>18) GOVERNING LAW</strong></td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    This Agreement will be governed by the laws of India and the Parties submit to the exclusive jurisdiction of the courts in <strong>Ahmedabad</strong>, India.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>19) DISPUTE RESOLUTION</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    In the event that any dispute arises between the Parties in connection with this Agreement, the construction of any provision of this Agreement or the rights, duties, or liabilities of the Parties hereto under this Agreement, the Parties shall conduct negotiations in good faith to solve such dispute. If mutual resolution cannot be reached within thirty (30) days after the commencement of such negotiations, either of the Parties shall be free to refer such dispute to a sole arbitrator to be appointed by the Company in accordance with the provisions of the Arbitration and Conciliation Act, 1996 or any subsequent enactment or amendment thereto and shall be held in English language. The venue of arbitration shall be at <strong>Ahemdabad</strong>.
+                    <br><br>
+                    The decision of the arbitrator shall be final and binding upon the parties.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>20) ENTIRE AGREEMENT</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    This Agreement (i) constitutes the entire agreement between the Parties, and (ii) supersedes all prior and contemporaneous agreements or communications, with respect to its subject matter.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>21) WAIVER</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    No waiver of any breach of any provision of this Agreement shall constitute a waiver of any prior, concurrent, or subsequent breach of that provision or any other provision of this Agreement. No waiver shall be effective unless made in writing and signed by an authorized representative of the waiving Party.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>22) SEVERANCE</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    If any provision of this Agreement is held by a court or tribunal of competent jurisdiction to be illegal, invalid, or unenforceable, that provision shall be severed, and the remaining provisions of this Agreement shall remain in full force and effect.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>23) RIGHTS ENURE</strong><br>
+                    The rights and obligations under this Agreement shall ensure to the benefit of the successors and assigns of the Parties. However, either of the Parties shall not assign any rights or obligations under this Agreement without the prior written consent of the other Party.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>24) BACKGROUND VERIFICATION
+                    </strong><br>
+                    The company will conduct background verification of the consultant through a third party. If during the background verification it is found that the consultant had misrepresented or shared any incorrect information, this agreement will be terminated immediately, and any pending dues towards the consultant will not be paid.
+                </td>
+            </tr>
+            <tr>
+                {% if doc.custom_working_days == 6 %}
+                <td colspan="2" class="highlight"><strong>25) WORKING HOURS AND LEAVES
+                    </strong><br>
+                    The consultant shall work a minimum of {{doc.custom_working_hour_per_day}} hours per day, Monday to Saturday (excluding the 2nd and 4th Saturdays and Sundays), excluding lunch or other breaks. The consultant shall be eligible for leaves as applicable to full-time employees.
+                </td>
+                {% else %}
+                <td colspan="2" class="highlight"><strong>25) WORKING HOURS AND LEAVES
+                    </strong><br>
+                    The consultant shall work a minimum of {{doc.custom_working_hour_per_day}} hours per day, Monday to Friday excluding lunch or other breaks. The consultant shall be eligible for leaves as applicable to full-time employees.
+                </td>
+                {% endif %}
+            </tr>
+            {% if is_extra_space == 1 and doc.custom_hiring_company not in ["Mantra Softech (India) Private Limited", "Mivanta India Private Limited"] %}
+            {% for _ in range(12) %}
+            <tr class="extra-space">
+                <td style="height: 20px;">&nbsp;</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+        {% if is_extra_space == 1 %}
+        {{render_footer(footer)}}
+        {% endif %}
+    </table>
+    <div class="page-break"></div>
+    <table>
+        {% if is_extra_space == 1 %}
+        {{render_header(header)}}
+        {% endif %}
+        <tbody>
+            <tr>
+                <td colspan="2" class="highlight">
+                    <strong>IN WITNESS WHEREOF</strong> the parties hereto have put their respective seal and signature on this Agreement on the day, month and year first here in above mentioned.
+                </td>
+            </tr>
+            <tr>
+                <td width="60%">
+                    <strong>For, {{doc.custom_hiring_company}}</strong>
+                </td>
+                <td width="40%">
+                    <strong>For, Consultant</strong><br>
+                </td>
+            </tr>
+            <tr>
+                <td width="60%" style="padding: 10px; text-align: left;">
+                    <p>_______________________</p>
+                    <strong>Mr. {{frappe.db.get_value("User",doc.custom_offer_approver,'full_name') or ''}}</strong><br>
+                    <em>Director</em>
+                </td>
+                <td width="40%" style="padding: 10px; text-align: left;">
+                    <p>_______________________</p>
+                    <strong>{{doc.custom_salutation}}. {{doc.applicant_name}}</strong><br>
+                </td>
+            </tr>
+            {% if is_extra_space == 1 %}
+            {% for _ in range(18) %}
+            <tr class="extra-space">
+                <td style="height: 20px;">&nbsp;</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+
+        </tbody>
+        {% if is_extra_space == 1 %}
+        {{render_footer(footer)}}
+        {% endif %}
+    </table>
+    <div class="page-break"></div>
+    <table>
+        {% if is_extra_space == 1 %}
+        {{render_header(header)}}
+        {% endif %}
+        <tbody>
+
+            <tr>
+                <td style="text-align:center;width:100%"><strong>SCHEDULE I – THE SERVICES</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: justify; width:100%; word-wrap: break-word;">
+                    {{doc.custom_schedule_i_the_services or ''}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <td width="50%" style="padding: 10px; text-align: left;">
+                    <p>_______________________</p>
+                    <strong>Mr. {{frappe.db.get_value("User",doc.custom_offer_approver,'full_name') or ''}}</strong><br>
+                    <em>Director</em>
+                </td>
+                <td width="50%" style="padding: 10px; text-align: center;">
+                    <p>_______________________</p>
+                    <strong>{{doc.custom_salutation}}. {{doc.applicant_name}}</strong><br>
+                </td>
+
+            </tr>
+            {% if is_extra_space == 1 %}
+            {% for _ in range(12) %}
+            <tr class="extra-space">
+                <td style="height: 20px;">&nbsp;</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+        {% if is_extra_space == 1 %}
+        {{render_footer(footer)}}
+        {% endif %}
+
+    </table>
+
+    <div class="page-break"></div>
+    <table>
+        {% if is_extra_space == 1 %}
+        {{render_header(header)}}
+        {% endif %}
+        <tbody>
+
+
+            <tr>
+                <td style="text-align:center;width:100%"><strong>SCHEDULE II – Achievements/Targets</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: justify; width:100%; word-wrap: break-word; overflow-wrap: anywhere;">
+                    {{doc.custom_schedule_ii_achievementstargets or ''}}
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+
+        <tbody>
+            <tr>
+                <td width="50%" style="padding: 10px; text-align: left;">
+                    <p>_______________________</p>
+                    <strong>Mr. {{frappe.db.get_value("User",doc.custom_offer_approver,'full_name') or ''}}</strong><br>
+                    <em>Director</em>
+                </td>
+                <td width="50%" style="padding: 10px; text-align: center;">
+                    <p>_______________________</p>
+                    <strong>{{doc.custom_salutation}}. {{doc.applicant_name}}</strong><br>
+                </td>
+            </tr>
+
+            {% if is_extra_space == 1 %}
+            {% for _ in range(12) %}
+            <tr class="extra-space">
+                <td style="height: 20px;">&nbsp;</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+        </tbody>
+        {% if is_extra_space == 1 %}
+        {{render_footer(footer)}}
+        {% endif %}
+    </table>
+
+
+
+
+
+    <div class="page-break"></div>
+    <table>
+        {% if is_extra_space == 1 %}
+        {{render_header(header)}}
+        {% endif %}
+        <tbody>
+            <tr>
+                <td style="text-align:center;width:100%"><strong>SCHEDULE III – FEES</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: justify; width:100%; word-wrap: break-word; overflow-wrap: anywhere;">
+                    {{doc.custom_schedule_iii_fees or ''}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <td width="50%" style="padding: 10px; text-align: left;">
+                    <p>_______________________</p>
+                    <strong>Mr. {{frappe.db.get_value("User",doc.custom_offer_approver,'full_name') or ''}}</strong><br>
+                    <em>Director</em>
+                </td>
+                <td width="50%" style="padding: 10px; text-align: center;">
+                    <p>_______________________</p>
+                    <strong>{{doc.custom_salutation}}. {{doc.applicant_name}}</strong><br>
+                </td>
+            </tr>
+
+            {% if is_extra_space == 1 %}
+            {% for _ in range(12) %}
+            <tr class="extra-space">
+                <td style="height: 20px;">&nbsp;</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+        {{render_footer(footer)}}
+    </table>
+
+</body>
+
+</html>

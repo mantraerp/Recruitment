@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Offer Details Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            width: 50%
+        }
+
+        .header-blue {
+            background-color: #D9E1F2;
+        }
+
+        .header-yellow {
+            background-color: #FFFF99;
+        }
+
+        .header-green {
+            background-color: #E2EFDA;
+        }
+
+        .header-orange {
+            background-color: #F4B084;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td><b>Name</b></td>
+            <td>{{doc.applicant_name}}</td>
+        </tr>
+        <tr>
+            <td><b>Current Company</b></td>
+            <td>{{frappe.db.get_value("Job Applicant",doc.job_applicant,'custom_current_company') or ''}}</td>
+        </tr>
+        <tr>
+            <td><b>Current CTC</b></td>
+            <td>{{frappe.utils.fmt_money(frappe.db.get_value("Job Applicant",doc.job_applicant,'custom_current_ctc') or 0, currency=None, precision=0) }}</td>
+        </tr>
+        <tr>
+            <td><b>Expected CTC</b></td>
+            <td>{{ frappe.utils.fmt_money(frappe.db.get_value("Job Applicant",doc.job_applicant,'custom_expected_ctc') or 0, currency=None, precision=0)}}</td>
+        </tr>
+        <tr class="header-blue">
+            <td><b>Negotiated CTC</b></td>
+            <td>{{ frappe.utils.fmt_money(doc.custom_negotiated_ctc, currency=None, precision=0) }}</td>
+        </tr>
+        <tr>
+            <td><b>Hike %</b></td>
+            <td>{{ (doc.custom_hike or 0) | int }}%</td>
+        </tr>
+        <tr>
+            <td><b>Experience & Max Salary for this role</b></td>
+            <td>{{doc.custom_experience__max_salary_for_this_role or 0}}</td>
+        </tr>
+        <tr>
+            <td><b>Decided Avg Salary</b></td>
+            <td> {{frappe.utils.fmt_money(doc.custom_decided_avg_salary or 0, currency=None, precision=0) }}</td>
+
+        </tr>
+        <tr class="header-blue">
+            <td><b>Offered Designation</b></td>
+            <td>{{doc.designation or ''}}</td>
+        </tr>
+        <tr>
+            <td><b>No of years Experience</b></td>
+            <td>{{frappe.db.get_value("Job Applicant",doc.job_applicant,'custom_total_experiencein_years') or ''}}</td>
+        </tr>
+        <tr>
+            <td><b>Expected Joining Date</b></td>
+            <td>{{ doc.custom_date_of_joining.strftime('%d-%m-%Y') if doc.custom_date_of_joining else '' }}</td>
+        </tr>
+        <tr>
+            <td><b>Job Location</b></td>
+            <td>{{doc.custom_location or ''}}</td>
+        </tr>
+        <tr>
+            <td><b>Department</b></td>
+            <td>{{doc.custom_department or ''}}</td>
+        </tr>
+        <tr class="header-green">
+            <td><b>Reporting to</b></td>
+            <td>{{doc.custom_reporting_to or ''}}</td>
+        </tr>
+        {% set interview_r1 = frappe.db.get_value("Interview", {'job_applicant': doc.job_applicant, 'interview_round': 'Round 1'}, 'name') %}
+        {% set interview_r2 = frappe.db.get_value("Interview", {'job_applicant': doc.job_applicant, 'interview_round': 'Round 2'}, 'name') %}
+
+        {% set ns = {'interviewer_r1_names': "", 'interviewer_r2_names': ""} %}
+
+        {% if interview_r1 %}
+        {% set interview1_list = frappe.db.get_all("Interview Feedback", {'interview': interview_r1, 'interview_round': 'Round 1'}, ['interviewer']) %}
+
+        {% for interview in interview1_list %}
+        {% if ns.interviewer_r1_names %}
+        {% set _ = ns.update({'interviewer_r1_names': ns.interviewer_r1_names + ", " + frappe.db.get_value("User",interview.interviewer,"full_name")}) %}
+        {% else %}
+        {% set _ = ns.update({'interviewer_r1_names': frappe.db.get_value("User",interview.interviewer,"full_name")}) %}
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if interview_r2 %}
+        {% set interview2_list = frappe.db.get_all("Interview Feedback", {'interview': interview_r2, 'interview_round': 'Round 2'}, ['interviewer']) %}
+
+        {% for interview in interview2_list %}
+        {% if ns.interviewer_r2_names %}
+        {% set _ = ns.update({'interviewer_r2_names': ns.interviewer_r2_names + ", " + frappe.db.get_value("User",interview.interviewer,"full_name")}) %}
+        {% else %}
+        {% set _ = ns.update({'interviewer_r2_names': frappe.db.get_value("User",interview.interviewer,"full_name")}) %}
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% set job_opening = frappe.db.get_value("Job Applicant", {'name': doc.job_applicant}, 'job_title') %}
+
+        <tr class="header-green">
+            <td><b>R1 Interviewer</b></td>
+            <td>{{ns.interviewer_r1_names}}</td>
+        </tr>
+        <tr class="header-green">
+            <td><b>R2 Interviewer</b></td>
+            <td>{{ns.interviewer_r2_names}}</td>
+        </tr>
+
+        <tr class="header-green">
+            <td><b>Hiring Approval Authority</b></td>
+            <td>{{frappe.db.get_value("User",doc.custom_offer_approver,'full_name') or ''}}</td>
+        </tr>
+        <tr class="header-orange">
+            <td><b>Reference Check</b></td>
+            <td>
+                {% if doc.custom_reference == "No" %}
+                No Reference
+                {% elif doc.custom_reference == "Yes" %}
+                Yes -<br> Reference from {{ doc.custom_reference_name or '' }}
+                {% else %}
+
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr class="header-orange">
+            <td><b>Recruitment Type</b></td>
+            <td>
+                {% if doc.custom_recruitment_type == "Replacement" %}
+                Replacement -{{ doc.custom_replacement_name or '' }}
+                {% elif doc.custom_recruitment_type == 'New Requirement' %}
+                New Requirement
+                {% else %}
+
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="header-yellow">
+            <td><b>Remark</b></td>
+            <td>{{doc.custom_offer_remark or ''}}</td>
+        </tr>
+    </table>
+</body>
+
+</html>

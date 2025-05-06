@@ -1,0 +1,30 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-02-07 12:27:18.807839",
+  "name": "Offer Accept",
+  "workflow_action_name": "Offer Accept"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-02-07 12:27:27.980845",
+  "name": "Offer Decline",
+  "workflow_action_name": "Offer Decline"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2024-02-12 13:03:01.436096",
+  "name": "Resubmit",
+  "workflow_action_name": "Resubmit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-04-14 14:09:52.669332",
+  "name": "Send to Team Leader",
+  "workflow_action_name": "Send to Team Leader"
+ }
+]

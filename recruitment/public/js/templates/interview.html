@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Evaluation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-before: always;
+        }
+
+        .form-table th,
+        .form-table td {
+            border: 1px solid black;
+            padding: 7px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .header {
+            background-color: #FF7F00;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .sub-header {
+            font-size: 12px;
+            background-color: #007BFF;
+
+            color: white;
+            font-weight: bold;
+        }
+
+        .rating-cell {
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    {% for interview in doc.interview_details %}
+    {% set interview_feedback_doc=frappe.get_doc("Interview Feedback",{'interviewer':interview.interviewer,'interview_round':doc.interview_round,'job_applicant':doc.job_applicant})%}
+
+    <table class="form-table">
+
+
+        <thead style="display: table-header-group;border:none;margin-top:0px !important">
+            <tr>
+                <td colspan="5" style="text-align: center; border: none;">
+                    {{ header}}
+                </td>
+            </tr>
+
+        </thead>
+
+
+
+        <tr>
+            <td width="25%" class="sub-header">Interviewer Name:</td>
+            <td width="25%">{{frappe.db.get_value("User",interview.interviewer,"full_name")}}</td>
+            <td width="25%" class="sub-header">Date of Interview:</td>
+            <td width="25%">{{schedule_date}}</td>
+        </tr>
+        <tr>
+            <td class="header">Candidate Name:</td>
+            <td>{{frappe.db.get_value("Job Applicant",doc.job_applicant,'applicant_name')}}</td>
+            <td class="header">Position:</td>
+            <td>{{doc.designation}}</td>
+        </tr>
+        <tr>
+            <td class="header">Round (1st/2nd/3rd):</td>
+            <td>{{doc.interview_round}}</td>
+            <td class="header">Selected/Rejected:</td>
+            <td>{{doc.status}}</td>
+        </tr>
+        <tr>
+            <th width="25%" class="header">Criteria With Rating</th>
+            <th width="15%" class="header">Rating (0-5)</th>
+            <th width="60%" class="header" colspan="2">Comments</th>
+        </tr>
+        {% for rating in interview_feedback_doc.skill_assessment %}
+        <tr>
+            <td width="25%">{{rating.skill}}</td>
+            <td width="15%" class="rating-cell">{{(rating.rating * 5) | float}}</td>
+            <td width="60%" colspan="2">{{rating.custom_comment}}</td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <th width="25%" class="sub-header">Overall Rating</th>
+            <th width="15%" class="sub-header">{{(interview_feedback_doc.average_rating * 5) | float | round(2) }}
+            </th>
+            <th width="60%" class="sub-header" colspan="2"></th>
+        </tr>
+        <tr>
+            <th width="25%" class="header">Criteria Without Rating</th>
+            <th width="15%" class="header">Rating (0-5)</th>
+            <th width="60%" class="header" colspan="2">Comments</th>
+        </tr>
+        {% for rating in interview_feedback_doc.custom_non_rated_criteria %}
+        <tr>
+            <td width="25%">{{rating.criteria}}</td>
+            <td width="15%" class="rating-cell">{{rating.description}}</td>
+            <td width="60%" colspan="2">{{rating.comment}}</td>
+        </tr>
+        {% endfor %}
+
+
+        <tr>
+            <td class="header">Overall Feedback</td>
+            <td colspan="3" class="header">{{interview_feedback_doc.feedback}}</td>
+        </tr>
+
+        <tr>
+            <td class="sub-header">Final Comment and Recommendation</td>
+            <td colspan="3" class="sub-header">{{interview_feedback_doc.custom_final_comment}}</td>
+        </tr>
+
+    </table>
+    {% endfor %}
+</body>
+
+</html>
